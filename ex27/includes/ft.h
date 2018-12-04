@@ -17,6 +17,8 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
+# define BUFF_SIZE 4096
+
 void	ft_putstr(char *str);
 void	ft_putchar(char c);
 
