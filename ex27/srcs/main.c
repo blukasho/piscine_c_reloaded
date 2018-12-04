@@ -11,25 +11,26 @@
 /* ************************************************************************** */
 
 #include "../includes/ft.h"
-#define BUF_SIZE 4096
 
-int		main(int argc, char **argv)
+int		main(int argc, const char *argv[])
 {
-	int		i;
-	int		u;
-	char	buf[BUF_SIZE + 1];
+	int		fd;
+	int		read_nbytes;
+	char	read_buff[BUFF_SIZE + 1];
 
-	if (argc == 1)
+	--argc;
+	++argv;
+	if (!argc)
 		ft_putstr("File name missing.\n");
-	else if (argc > 2)
+	else if (argc > 1)
 		ft_putstr("Too many arguments.\n");
 	else
 	{
-		i = open(argv[1], O_RDONLY);
-		u = read(i, buf, BUF_SIZE);
-		buf[u] = '\0';
-		ft_putstr(buf);
-		close(i);
+		fd = open(*argv, O_RDONLY);
+		read_nbytes = read(fd, read_buff, BUFF_SIZE);
+		read_buff[read_nbytes] = '\0';
+		ft_putstr(read_buff);
+		close(fd);
 	}
 	return (0);
 }
