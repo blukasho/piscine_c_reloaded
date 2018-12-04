@@ -6,7 +6,7 @@
 #    By: blukasho <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/24 17:57:03 by blukasho          #+#    #+#              #
-#    Updated: 2018/10/24 18:12:10 by blukasho         ###   ########.fr        #
+#*   Updated: 2018/12/04 12:28:14 by blukasho         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ P = ft_display_file
 
 CC = gcc -march=native
 LC = ar -rcsv
-FLAGS = -Wall -Wextra -Werror -Ofast
+FLAGS = -Wall -Wextra -Werror
 
 WHITE=\033[0m
 GREEN=\033[32m
