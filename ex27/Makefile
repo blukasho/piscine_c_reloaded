@@ -10,26 +10,47 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAME = libadd.a
+P = ft_display_file
+
+CC = gcc -march=native
+LC = ar -rcsv
+FLAGS = -Wall -Wextra -Werror -Ofast
+
+WHITE=\033[0m
+GREEN=\033[32m
+RED=\033[31m
+
 SRCS = srcs/ft_putstr.c srcs/ft_putchar.c
-OBJ = ft_putstr.o ft_putchar.o
-GCC = gcc -Wall -Wextra -Werror
+OBJ = $(SRC:%.c=%.o)
 
-all: makelib main
+P_SRC = srcs/main.c
 
-makelib:
-	$(GCC) -c $(SRCS)
-	ar -rv libft.a $(OBJ)
-	ranlib libft.a
+LFLAGS = -L . -ladd
 
-main:
-	$(GCC) srcs/main.c -o ft_display_file -L. -lft
+all: $P
+
+$(OBJ): %.o: %.c
+	@echo -n '+'
+	@$(CC) -c $(FLAGS) $< -o $@
+
+$(NAME): $
+	$(LC) $(NAME) $(OBJ)
+	@echo "> additionals $(GREEN)compiled$(WHITE)"
+
+$P: $(NAME)
+	@$(CC) $(P_SRC) $(FLAGS) $(LFLAGS) -o $P
+	@echo $P "$(GREEN)compiled$(WHITE)"
 
 clean:
-	rm -rf $(OBJ)
+	@rm -rf $(OBJ)
 
 fclean: clean
-	rm -rf ft_display_file libft.a
+	@rm -rf $(P)
+	@rm -rf $(NAME)
+	@echo "$(RED)deleted$(WHITE):" $(NAME)
+	@echo "$(RED)deleted$(WHITE):" $(P)
 
 re : fclean all
 
-.PHONY: all makelib main clean fclean re
+.PHONY: all clean fclean re
