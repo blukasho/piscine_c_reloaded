@@ -22,7 +22,7 @@ GREEN=\033[32m
 RED=\033[31m
 
 SRCS = srcs/ft_putstr.c srcs/ft_putchar.c
-OBJ = $(SRC:%.c=%.o)
+OBJ = $(SRCS:%.c=%.o)
 
 P_SRC = srcs/main.c
 
@@ -34,7 +34,7 @@ $(OBJ): %.o: %.c
 	@echo -n '+'
 	@$(CC) -c $(FLAGS) $< -o $@
 
-$(NAME): $
+$(NAME): $(OBJ)
 	$(LC) $(NAME) $(OBJ)
 	@echo "> additionals $(GREEN)compiled$(WHITE)"
 
